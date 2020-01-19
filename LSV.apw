@@ -140,6 +140,18 @@
 <FilePathName>CustomFunctions.axi</FilePathName>
 <Comments></Comments>
 </File>
+<File CompileType="Netlinx" Type="Include"><Identifier>DBX_ZonePro_Main</Identifier>
+<FilePathName>DBX_ZonePro_Main.axi</FilePathName>
+<Comments></Comments>
+</File>
+<File CompileType="Netlinx" Type="Module"><Identifier>DBX_ZonePro_UI</Identifier>
+<FilePathName>DBX_ZonePro_UI.axs</FilePathName>
+<Comments></Comments>
+</File>
+<File CompileType="Netlinx" Type="MasterSrc"><Identifier>Main</Identifier>
+<FilePathName>Main.axs</FilePathName>
+<Comments></Comments>
+</File>
 <File CompileType="Netlinx" Type="Module"><Identifier>mAtenMatrix</Identifier>
 <FilePathName>mAtenMatrix.axs</FilePathName>
 <Comments></Comments>
