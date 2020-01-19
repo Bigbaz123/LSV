@@ -136,6 +136,14 @@
 <UserName></UserName>
 <Password></Password>
 <Comments></Comments>
+<File CompileType="Netlinx" Type="Include"><Identifier>CustomFunctions</Identifier>
+<FilePathName>CustomFunctions.axi</FilePathName>
+<Comments></Comments>
+</File>
+<File CompileType="Netlinx" Type="Module"><Identifier>mBenqProjRs232</Identifier>
+<FilePathName>mBenqProjRs232.axs</FilePathName>
+<Comments></Comments>
+</File>
 </System>
 <System IsActive="false" Platform="Netlinx" Transport="Serial" TransportEx="TCPIP"><Identifier>Directors Suite</Identifier>
 <SysID>0</SysID>
