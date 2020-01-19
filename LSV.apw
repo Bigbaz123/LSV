@@ -148,6 +148,10 @@
 <FilePathName>mBenqProjRs232.axs</FilePathName>
 <Comments></Comments>
 </File>
+<File CompileType="Netlinx" Type="Module"><Identifier>mLGDisplay</Identifier>
+<FilePathName>mLGDisplay.axs</FilePathName>
+<Comments></Comments>
+</File>
 </System>
 <System IsActive="false" Platform="Netlinx" Transport="Serial" TransportEx="TCPIP"><Identifier>Directors Suite</Identifier>
 <SysID>0</SysID>
