@@ -97,33 +97,30 @@ DEFINE_START{
 ******************************************************************************/
 DEFINE_FUNCTION fnProcessFeedback(CHAR pData[]){
 
-	SWITCH(myBenQProj.LAST_SENT){
-		CASE 'QPW':{
-			myBenQProj.POWER = ATOI(pData)
-			// Request Shutter Status
-			fnSendCommand('QSH','')
-		}
+    SWITCH(myBenQProj.LAST_SENT){
+	    CASE 'pow':{
+		IF(find_string(pdata,'pow=?#ON',1)) ON[vdvControl,255]
+		IF(find_string(pdata,'POW=OFF',1)) OFF[vdvControl,255]
+    
+	    }
 
-		CASE 'QSH':{
-			myBenQProj.VMUTE = ATOI(pData)
-			IF(myBenQProj.VMUTE !=myBenQProj.DesVMUTE){
-				SWITCH(myBenQProj.desVMute){
-					CASE TRUE:  fnSendCommand('OSH','1')
-					CASE FALSE: fnSendCommand('OSH','0')
-				}
-			}
-		}
-	}
+	    CASE 'blank':{
+		    myBenQProj.VMUTE = ATOI(pData)
+		    IF(find_string(pdata,'BLANK=OFF',1)) OFF[vdvControl,214]
+		    IF(find_string(pdata,'BLANK=ON',1)) ON[vdvControl,214]
+	    }
+    }
 }
 DEFINE_FUNCTION fnSendCommand(CHAR pCmd[], CHAR pParam[]){
 	STACK_VAR CHAR pPacket[100]
 
 	// Build Command
 	pPacket = "pCmd"
-	IF(LENGTH_ARRAY(pParam)) pPacket = "'*',pPacket, '=', pParam,'#'"
-
+	
 	// Store Command
 	myBenQProj.LAST_SENT = pPacket
+	IF(LENGTH_ARRAY(pParam)) pPacket = "'*',pPacket, '=', pParam,'#'"
+
 
 	// Add delims
 	pPacket = "$0D,pPacket,$0D"
@@ -180,9 +177,9 @@ DEFINE_EVENT DATA_EVENT[dvDevice]{
 	}
 	STRING:{
 		fnDebug('BenQProj->AMX',DATA.TEXT)
-		WHILE(FIND_STRING(myBenQProj.Rx,"$03",1)){
-			REMOVE_STRING(myBenQProj.Rx,"$02",1)
-			fnProcessFeedback(fnStripCharsRight(REMOVE_STRING(myBenQProj.Rx,"$03",1),1));
+		WHILE(FIND_STRING(myBenQProj.Rx,"'>*'",1)){
+			REMOVE_STRING(myBenQProj.Rx,"'>*'",1)
+			fnProcessFeedback(myBenQProj.Rx);
 		}
 		IF(TIMELINE_ACTIVE(TLID_COMMS)){TIMELINE_KILL(TLID_COMMS)}
 		TIMELINE_CREATE(TLID_COMMS,TLT_COMMS,LENGTH_ARRAY(TLT_COMMS),TIMELINE_ABSOLUTE,TIMELINE_ONCE)
@@ -248,7 +245,7 @@ DEFINE_EVENT DATA_EVENT[vdvControl]{
 }
 
 DEFINE_EVENT TIMELINE_EVENT[TLT_ADJ]{
-	SEND_COMMAND vdvControl, 'AUTO-AJUST'
+	SEND_COMMAND vdvControl, 'AUTO-ADJUST'
 }
 DEFINE_PROGRAM{
 	[vdvControl,251] = (TIMELINE_ACTIVE(TLID_COMMS))
