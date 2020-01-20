@@ -14,14 +14,33 @@ PROGRAM_NAME='Main'
 (*          DEVICE NUMBER DEFINITIONS GO BELOW             *)
 (***********************************************************)
 
-#INCLUDE 'DBX_ZonePro_Main'
-#INCLUDE 'CustomFunctions'
 
 DEFINE_DEVICE
+tpmain 		=	10001:0:0
+dvTP   		=	10001:1:0
 
-(***********************************************************)
-(*               CONSTANT DEFINITIONS GO BELOW             *)
-(***********************************************************)
+dvAtenMatrix	=	05001:01:01
+vdvAtenMatrix	=	33001:01:01
+
+dvBenqProj	=	05001:02:01
+vdvBenqProj	=	33002:01:01
+
+dvLGScreen	=	05001:03:01
+vdvLGscreen	=	33003:01:01
+
+dvDBX_ZonePro 	= 	0:2:0 
+vdvDBX_ZonePro	=	33004:1:0 
+
+#INCLUDE 'DBX_ZonePro_Main'
+#INCLUDE 'CustomFunctions'
+#INCLUDE 'StandardCodeDiagnostics'
+
+DEFINE_MODULE 'mAtenMatrix' Matrix(vdvAtenMatrix,dvAtenMatrix)
+DEFINE_MODULE 'mBenqProjRs232' Projector(vdvBenqProj,dvBenqProj)
+DEFINE_MODULE 'mBenqProjRs232' Display(vdvLGscreen,dvLGScreen)
+DEFINE_MODULE 'DBX_ZonePro_COMM' comm_code(vdvDBX_ZonePro,dvDBX_ZonePro,serial)
+DEFINE_MODULE 'DBX_ZonePro_UI' ui_code(vdvDBX_ZonePro, dvTP, DBX_ZonePro_BUTTONS,cServerAddress,lServerPort,serial,dvDBX_ZonePro)
+
 DEFINE_CONSTANT
 
 (***********************************************************)
