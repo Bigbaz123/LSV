@@ -24,11 +24,7 @@ DEFINE_DEVICE
 
 // WARNING!!!!!! must change the variable serial to 0 below, and
 // you must type in the address into cServerAddress variable also below.
-dvDBX_ZonePro = 0:2:0 // 0:2:0 is the first available IP port, 0:3:0 is the next, etc. 
 
-dvTP   =10001:1:0
-
-vdvDBX_ZonePro=33001:1:0 //virtual device
 
 
 DEFINE_CONSTANT
@@ -181,6 +177,5 @@ VOLATILE INTEGER serial = 0 // determines if this is to send serial messages or 
 
 
 
-DEFINE_MODULE 'DBX_ZonePro_COMM' comm_code(vdvDBX_ZonePro,dvDBX_ZonePro,serial)
-DEFINE_MODULE 'DBX_ZonePro_UI' ui_code(vdvDBX_ZonePro, dvTP, DBX_ZonePro_BUTTONS,cServerAddress,lServerPort,serial,dvDBX_ZonePro)
+
 
