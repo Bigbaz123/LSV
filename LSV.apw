@@ -164,6 +164,10 @@
 <FilePathName>mLGDisplay.axs</FilePathName>
 <Comments></Comments>
 </File>
+<File CompileType="Netlinx" Type="Include"><Identifier>StandardCodeDiagnostics</Identifier>
+<FilePathName>StandardCodeDiagnostics.axi</FilePathName>
+<Comments></Comments>
+</File>
 </System>
 <System IsActive="false" Platform="Netlinx" Transport="Serial" TransportEx="TCPIP"><Identifier>Directors Suite</Identifier>
 <SysID>0</SysID>
